@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Digital</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.2/web3-provider.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Digital NFTart Marketplace</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item dropdown">
+              
+            </li>
+          </ul>
+            <button id = "btn-login" class = "btn btn-outline-primary my-2 my-sm-0" type="button">Connect Wallet</button>
+            <button id="btn-logout" class="btn btn-outline-danger" type = "button" onclick="logOut()">Logout</button>
+
+        </div>
+      </nav>
+    <!-- <button id="btn-login">Moralis Metamask Login</button> -->
+    <br>
+    <button class="btn btn-info" type="button" onclick="getData()">get Data</button>
+    <br>
+    <div class="container text-right" >
+    <input type="file" name = "file" id = "file">
+    <button id = "upload_file_button" class = "btn btn-info" type="button">upload</button>
+    </div>
+    <br>
+
+    <!-- <div class="container">
+      <div class="col-md-4 px-0">
+    <img class = "img-fluid" src = "https://ipfs.moralis.io:2053/ipfs/QmWuqLHNZL7wfA192q3HRrrRuyFCwEKWpq4VnifFKtXz1s">
+  </div>
+  <button type = "button" class="btn btn-danger">Buy</button>
+</div> -->
+<br>
+<div class = "row"> 
+  <div class="col-xs-4">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/Qmc7pKedmGwZLbqkiAMuhmXfJYYv9LNYyCAK1AdrSafjLc" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Test Image</h5>
+            <p class="card-text">This image is being used tesing purposes only</p>
+              <a href="#" class="btn btn-primary">Price</a>
+                <button class="btn btn-danger" type="button" onclick="BuyNFT('0xd18882c9179195962ea3296c6a2fe3f513c1e68e9f01cd880e0fa60566be16bd')">Buy</button>
+        </div>
+    </div>
+  </div>
+
+  
+<div class="col-xs-4">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/QmZ7HrmsutHhs78UfqJb3m1qVrsvDMsry63Bqo22iMxFQE" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Test Image</h5>
+    <p class="card-text">This image is being used tesing purposes only</p>
+    <a href="#" class="btn btn-primary">Price</a>
+    <button class="btn btn-danger" type="button" onclick="BuyNFT('0x225d3b328ce39eb1b5bdd16c31d795717f17f6924fbaceeb796778e48644ed94')">Buy</button>
+  </div>
+</div>
+</div> 
+
+ 
+<div class="col-xs-4">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/QmQ4Dth3dMUqL8HeGGkB9duEQSMsd57eB2aTcnPtgDTvh4" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Test Image</h5>
+      <p class="card-text">This image is being used tesing purposes only</p>
+      <a href="#" class="btn btn-primary">Price</a>
+      <button class="btn btn-danger" type="button" onclick="BuyNFT('0xfe47f789c6a6b9861594316afafeee63c8901d6e0c500d16e899145224443e6f')">Buy</button>
+    </div>
+  </div>
+  </div> 
+
+  <div class="col-xs-4">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/Qmc45oLU1kJnDhDW9rsbvSktqVqHauFeSb1AGRusmwwHBw" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Test Image</h5>
+        <p class="card-text">This image is being used tesing purposes only</p>
+        <a href="#" class="btn btn-primary">Price</a>
+        <button class="btn btn-danger" type="button" onclick="BuyNFT('0x5e80e92f3578f8ac4f4eddcad4e25e5895b9393f5696fb4faf2051c3071f9996')">Buy</button>
+      </div>
+    </div>
+    </div> 
+  
+    <div class="col-xs-4">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/QmRo3KDsaP7k3BH59DWbdUY1LTrhAdtc6rTnZnaheQi2ae" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Test Image</h5>
+        <p class="card-text">This image is being used tesing purposes only</p>
+        <a href="#" class="btn btn-primary">Price</a>
+        <button class="btn btn-danger" type="button" onclick="BuyNFT('')">Buy</button>
+      </div>
+    </div>
+    </div> 
+  
+  <!-- copy from here -->
+  <div class="col-xs-4">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Test Image</h5>
+        <p class="card-text">This image is being used tesing purposes only</p>
+        <a href="#" class="btn btn-primary">Price</a>
+        <button class="btn btn-danger" type="button" onclick="BuyNFT('')">Buy</button>
+      </div>
+    </div>
+    </div> 
+    <!-- till here -->
+</div>
+
+
+
+    <!-- <div class="input-group mb-md-0">
+      <div class="form-outline">
+        <input type="search" id="form1" class="form-control " />
+      </div>
+      <button type="button" class="btn btn-primary">
+        search
+      </button>
+      <br>
+    </div> -->
+    <!-- <div class="input-group mb-3">
+        <input id = "getinput" type="text" class="form-control">
+        <div>
+          <button id = "getinp" class="btn btn-outline-danger" type="button">data</button>
+        </div>
+      </div> -->
+      
+    <!-- <button onclick="loginagain()">Login with Metamask</button> -->
+
+    <!-- <script>
+        Moralis.initialize('v3afaINstW4ea7WmpmS4U1CpPpOpLvDx7W9W1ask');
+        Moralis.serverURL = "https://uu0yluccfjjx.grandmoralis.com:2053/server" -->
+
+    <!-- </script> -->
+   
+    <!-- <img src="https://ipfs.moralis.io:2053/ipfs/QmNNw9Sfy6wjFobjjEDRxYBQQYtezYRXLgj7kSb2LyYW7y" class="img-fluid" alt = "responsive-image"> -->
+    <!-- Footer -->
+  <script type="text/javascript" src = "main.js"></script>
+
+</body>
+</html>
